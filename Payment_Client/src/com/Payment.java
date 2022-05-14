@@ -74,79 +74,77 @@ public class Payment {
 		}
 		
 		//create method to read all payment details
-		public String getAllPayment() {
+		public String getAllPayment()
+		{
 			String output = "";
 			try
 			{
-				//for get DB connection
 				Connection con = connect();
 				if (con == null)
 				{
-					return "Error while connecting to the database for reading.";//connection error message
+					return "Error while connecting to the database for reading.";
 				}
-				
 				// Prepare the html table to be displayed
-				output = "<table border='1'>" +
-	                    "<tr>" +
-						"<th>PaymentID</th>" +
-	                    "<th>CardType</th>" +
-						"<th>CardNumber</th>" +
-						"<th>CardHolderName</th>" +
-						"<th>CVC</th>" +
-						"<th>CardExpireDate</th>" +
-						"<th>Status</th>" +
-						"<th>TaxAmount</th>" +
-	                    "<th>TotalAmount</th>" +
-						"<th>PaymentDate</th>" +
-						"<th>BillID</th><th>Update</th><th>Remove</th></tr>";
-				
-							String query = "select * from payment";//create statement
-							Statement stmt = con.createStatement();
-							ResultSet rs = stmt.executeQuery(query);
-							// iterate through the rows in the result set
-							while (rs.next())
-							{
-								int PaymentID = rs.getInt("PaymentID");
-								String CardType = rs.getString("CardType");
-								String CardNumber = rs.getString("CardNumber");
-								String CardHolderName = rs.getString("CardHolderName");
-								String CVC = rs.getString("CVC");
-								String CardExpireDate = rs.getString("CardExpireDate");
-								String Status = rs.getString("Status");
-								float TaxAmount = rs.getFloat("TaxAmount");
-								float TotalAmount = rs.getFloat("TotalAmount");
-								String PaymentDate = rs.getString("PaymentDate");
-								int BillID = rs.getInt("BillID");
-	                            //add into the html table
-								output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + PaymentID + "</td>";
-								output += "<td>" + CardType + "</td>";
-								output += "<td>" + CardNumber + "</td>";							
-								output += "<td>" + CardHolderName + "</td>";
-								output += "<td>" + CVC + "</td>";
-								output += "<td>" + CardExpireDate + "</td>";
-								output += "<td>" + Status + "</td>";
-								output += "<td>" + TaxAmount + "</td>";
-								output += "<td>" + TotalAmount + "</td>";
-								output += "<td>" + PaymentDate + "</td>";
-								output += "<td>" + BillID + "</td>";
-								
-								// buttons
-								output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-itemid='"+ PaymentID + "'>" + "</td>"
-										+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"+ PaymentID + "'>" + "</td></tr>";
-							}
-							con.close();
-							// Complete the html table
-							output += "</table>";
-		}
+				output = "<table border='1' style=\"font-family: Arial, Helvetica, sans-serif; border-collapse: collapse; width: 100%; radius: 10px\">" +
+	                    "<tr style=\"border: 1px solid #ddd; padding: 8px;\">" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">PaymentID</th>" +
+	                    "<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">CardType</th>" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">CardNumber</th>" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">CardHolderName</th>" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">CVC</th>" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">CardExpireDate</th>" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">Status</th>" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">TaxAmount</th>" +
+	                    "<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">TotalAmount</th>" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">PaymentDate</th>" +
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">BillID</th><th>Update</th><th>Remove</th></tr>";
+				String query = "select * from payment";
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+				// iterate through the rows in the result set
+				while (rs.next())
+				{
+					int PaymentID = rs.getInt("PaymentID");
+					String CardType = rs.getString("CardType");
+					String CardNumber = rs.getString("CardNumber");
+					String CardHolderName = rs.getString("CardHolderName");
+					String CVC = rs.getString("CVC");
+					String CardExpireDate = rs.getString("CardExpireDate");
+					String Status = rs.getString("Status");
+					float TaxAmount = rs.getFloat("TaxAmount");
+					float TotalAmount = rs.getFloat("TotalAmount");
+					String PaymentDate = rs.getString("PaymentDate");
+					int BillID = rs.getInt("BillID");
+					// Add into the html table
+					output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + PaymentID
+							+ "'>" + "</td></tr>";
+					output += "<tr style=\"border: 1px solid #ddd; padding: 8px;\"><td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + PaymentID + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + CardType + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + CardNumber + "</td>";							
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + CardHolderName + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + CVC + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + CardExpireDate + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + Status + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #191919; font-weight: 600\">" + TaxAmount + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #191919; font-weight: 600\">" + TotalAmount + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + PaymentDate + "</td>";
+					output += "<td style=\"padding-top: 6px; padding-bottom: 6px; text-align: center; color: #3B3B3B;\">" + BillID + "</td>";
+					// buttons
+					output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-itemid='"+ PaymentID + "'>" + "</td>"
+							+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"+ PaymentID + "'>" + "</td></tr>";
+				}
+				con.close();
+				// Complete the html table
+				output += "</table>";
+			}
 			catch (Exception e)
 			{
-				output = "Error while reading the Payment.";//display error message
+				output = "Error while reading the payments.";
 				System.err.println(e.getMessage());
 			}
 			return output;
+		}
 
-	    }
-		
 		//create method to read payment by user id
 	/*	public String getPaymentByUser(int UserID) {
 			try(Connection con = connect()) {//get connection

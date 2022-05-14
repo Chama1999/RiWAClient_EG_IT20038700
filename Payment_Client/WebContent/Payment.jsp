@@ -50,8 +50,8 @@
 				<br>
 				<div id="divItemsGrid">
 					<%
-						Payment itemObj = new Payment();
-					out.print(itemObj.getAllPayment());
+						Payment paymentObj = new Payment();
+					out.print(paymentObj.getAllPayment());
 					%>
 
 				</div>

@@ -33,21 +33,42 @@ $(document).on("click", ".btnUpdate", function(event)
 function validateItemForm()
 {
 //	CODE
-	if ($("#itemCode").val().trim() == "")
+	if ($("#CardType").val().trim() == "")
 	{
-		return "Insert Item Code.";
+		return "Insert CardType.";
 	}
 //	NAME
-	if ($("#itemName").val().trim() == "")
+	if ($("#CardNumber").val().trim() == "")
 	{
-		return "Insert Item Name.";
+		return "Insert CardNumber.";
 	}
 	9
 //	PRICE-------------------------------
-	if ($("#itemPrice").val().trim() == "")
+	if ($("#CardHolderName").val().trim() == "")
 	{
-		return "Insert Item Price.";
+		return "Insert CardHolderName.";
 	}
+	
+	if ($("#CVC").val().trim() == "")
+	{
+		return "Insert CVC.";
+	}
+	
+	if ($("#CardExpireDate").val().trim() == "")
+	{
+		return "Insert CardExpireDate.";
+	}
+	
+	if ($("#PaymentDate").val().trim() == "")
+	{
+		return "Insert PaymentDate.";
+	}
+	
+	if ($("#BillID").val().trim() == "")
+	{
+		return "Insert BillID.";
+	}
+	/*
 //	is numerical value
 	var tmpPrice = $("#itemPrice").val().trim();
 	if (!$.isNumeric(tmpPrice))
@@ -61,7 +82,7 @@ function validateItemForm()
 	{
 		return "Insert Item Description.";
 	}
-	return true;
+	return true;*/
 }
 
 $(document).on("click", "#btnSave", function(event)
@@ -83,7 +104,7 @@ $(document).on("click", "#btnSave", function(event)
 	var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
 	$.ajax(
 			{
-				url : "ItemsAPI",
+				url : "PaymentAPI",
 				type : type,
 				data : $("#formItem").serialize(),
 				dataType : "text",
@@ -128,9 +149,9 @@ $(document).on("click", ".btnRemove", function(event)
 		{
 	$.ajax(
 			{
-				url : "ItemsAPI",
+				url : "PaymentAPI",
 				type : "DELETE",
-				data : "itemID=" + $(this).data("itemid"),
+				data : "PaymentID=" + $(this).data("itemid"),
 				dataType : "text",
 				complete : function(response, status)
 				{
