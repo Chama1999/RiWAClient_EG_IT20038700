@@ -59,13 +59,15 @@ public class Payment {
 				// execute the statement
 							pstmnt.execute();
 							con.close();
-							output = "Payment Added successfully";//successful message
+							String newItems = getAllPayment();
+							output = "{\"status\":\"success\", \"data\": \"" +
+									newItems + "\"}";
 				
 				
 			}
 			catch (Exception e)
 			{
-				output ="Error while inserting the Payment.";//error insert message
+				output = "{\"status\":\"error\", \"data\": \"Error while inserting the Payment.\"}";
 				System.err.println(e.getMessage());
 			}
 			return output;
@@ -96,7 +98,8 @@ public class Payment {
 						"<th>TaxAmount</th>" +
 	                    "<th>TotalAmount</th>" +
 						"<th>PaymentDate</th>" +
-						"<th>BillID</th>";
+						"<th>BillID</th><th>Update</th><th>Remove</th></tr>";
+				
 							String query = "select * from payment";//create statement
 							Statement stmt = con.createStatement();
 							ResultSet rs = stmt.executeQuery(query);
