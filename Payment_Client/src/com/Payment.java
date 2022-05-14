@@ -118,7 +118,7 @@ public class Payment {
 								String PaymentDate = rs.getString("PaymentDate");
 								int BillID = rs.getInt("BillID");
 	                            //add into the html table
-								output += "<tr><td>" + PaymentID + "</td>";
+								output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + PaymentID + "</td>";
 								output += "<td>" + CardType + "</td>";
 								output += "<td>" + CardNumber + "</td>";							
 								output += "<td>" + CardHolderName + "</td>";
@@ -129,6 +129,9 @@ public class Payment {
 								output += "<td>" + TotalAmount + "</td>";
 								output += "<td>" + PaymentDate + "</td>";
 								output += "<td>" + BillID + "</td></tr>";
+								// buttons
+								output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-itemid='"+ PaymentID + "'>" + "</td>"
+								+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"+ PaymentID + "'>" + "</td></tr>";
 							}
 							con.close();
 							// Complete the html table
