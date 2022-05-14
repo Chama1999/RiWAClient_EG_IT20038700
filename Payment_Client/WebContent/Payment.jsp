@@ -2,13 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-
-
-<%
-	if (session.getAttribute("Username") == null) {
-	response.sendRedirect("index.jsp");
-}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +18,7 @@
 		<div class="row">
 			<div class="col-6">
 				<h1>Items Management</h1>
-				<form id="formItem" name="formItem">
+				<!--  <form id="formItem" name="formItem">
 					Item code: <input id="itemCode" name="itemCode" type="text"
 						class="form-control form-control-sm"> <br> Item name:
 					<input id="itemName" name="itemName" type="text"
@@ -34,6 +27,20 @@
 						class="form-control form-control-sm"> <br> Item
 					description: <input id="itemDesc" name="itemDesc" type="text"
 						class="form-control form-control-sm"> <br> <input
+						id="btnSave" name="btnSave" type="button" value="Save"
+						class="btn btn-primary"> <input type="hidden"
+						id="hidItemIDSave" name="hidItemIDSave" value="">
+				</form>-->
+				<form id="formItem" name="formItem">
+					CardType: <input id="CardType" name="CardType" type="text"
+						class="form-control form-control-sm"> <br> CardNumber:
+					<input id="CardNumber" name="CardNumber" type="text"
+						class="form-control form-control-sm"> <br> CardHolderName: <input id="CardHolderName" name="CardHolderName" type="text"
+						class="form-control form-control-sm"> <br> CVC: <input id="CVC" name="CVC" type="text"
+						class="form-control form-control-sm"> <br> CardExpireDate: <input id="CardExpireDate" name="CardExpireDate" type="text"
+						class="form-control form-control-sm"> <br> PaymentDate: <input id="PaymentDate" name="PaymentDate" type="text"
+						class="form-control form-control-sm"> <br> BillID: <input id="BillID" name="BillID" type="text"
+						class="form-control form-control-sm"> <input
 						id="btnSave" name="btnSave" type="button" value="Save"
 						class="btn btn-primary"> <input type="hidden"
 						id="hidItemIDSave" name="hidItemIDSave" value="">

@@ -128,10 +128,11 @@ public class Payment {
 								output += "<td>" + TaxAmount + "</td>";
 								output += "<td>" + TotalAmount + "</td>";
 								output += "<td>" + PaymentDate + "</td>";
-								output += "<td>" + BillID + "</td></tr>";
+								output += "<td>" + BillID + "</td>";
+								
 								// buttons
 								output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary' data-itemid='"+ PaymentID + "'>" + "</td>"
-								+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"+ PaymentID + "'>" + "</td></tr>";
+										+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-itemid='"+ PaymentID + "'>" + "</td></tr>";
 							}
 							con.close();
 							// Complete the html table
