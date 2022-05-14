@@ -147,7 +147,7 @@ public class Payment {
 	    }
 		
 		//create method to read payment by user id
-		public String getPaymentByUser(int UserID) {
+	/*	public String getPaymentByUser(int UserID) {
 			try(Connection con = connect()) {//get connection
 				//create a prepared statement
 				String getQuery = "select py.PaymentID, o.BillID, c.name, py.PaymentDate,o.NoOfUnits,py.Status, py.TotalAmount from billing o \n"
@@ -196,7 +196,7 @@ public class Payment {
 				return "Error occur during retrieving \n" + e.getMessage();//get error message
 			}
 			
-		}
+		}*/
 		
 		
 		
@@ -328,16 +328,11 @@ public class Payment {
 		}
 		
 		//create update method
-		public String updatePayment(int PaymentID,
-				String CardType,
-				String CardNumber,
-				String CardHolderName,
-				String CVC,
-				String CardExpireDate,
-				String PaymentDate,
-				int BillID) {
-			
+		public String updatePayment(int PaymentID,String CardType,String CardNumber,String CardHolderName,String CVC,String CardExpireDate,String PaymentDate,int BillID) 
+		{
+			String output = "";
 			try(Connection con = connect()) {
+				
 				//implement prepared statement
 				String updateQuery = "update payment set CardType=?,CardNumber=?,CardHolderName=?,CVC=?,CardExpireDate=?,Status=?,TaxAmount=? ,TotalAmount=? ,PaymentDate=?,BillID=? where PaymentID =?" ;
 				
@@ -360,15 +355,17 @@ public class Payment {
 				con.close();
 				System.out.println(PaymentID);
 		
-				return "Payment updated successfully";//successful message
+				String newItems = getAllPayment();
+				output = "{\"status\":\"success\", \"data\": \"" +
+						newItems + "\"}";
 				
 				
 			}
 			catch(Exception e) {
-				return "Error occur during updating \n" +
-						e.getMessage();
+				output = "{\"status\":\"error\", \"data\": \"Error while updating the Payment.\"}";
+				System.err.println(e.getMessage());
 			}
-			
+		return output;	
 			
 		}
 		//create delete method
@@ -388,12 +385,14 @@ public class Payment {
 				// execute the statement
 				preparedStmt.execute(); 
 				con.close(); 
-				output = "Deleted successfully"; 
+				String newItems = getAllPayment();
+				output = "{\"status\":\"success\", \"data\": \"" +
+						newItems + "\"}";
 			} 
 			catch (Exception e) 
 			{ 
-				output = "Error while deleting the payment."; 
-				System.err.println(e.getMessage()); 
+				output = "{\"status\":\"error\", \"data\": \"Error while deleting the Payment.\"}";
+				System.err.println(e.getMessage());
 			} 
 			return output; 
 		} 
