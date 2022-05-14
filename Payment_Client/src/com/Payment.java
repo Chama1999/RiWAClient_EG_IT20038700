@@ -28,7 +28,7 @@ public class Payment {
 		}
 		
 		//Implement insert method
-		public String addPayment(String CardType,String CardNumber,String CardHolderName,String CVC,String CardExpireDate,String PaymentDate,int BillID )
+		/*public String addPayment(String CardType,String CardNumber,String CardHolderName,String CVC,String CardExpireDate,String PaymentDate,int BillID )
 		{
 			String output = "";
 			try
@@ -68,6 +68,50 @@ public class Payment {
 			catch (Exception e)
 			{
 				output = "{\"status\":\"error\", \"data\": \"Error while inserting the Payment.\"}";
+				System.err.println(e.getMessage());
+			}
+			return output;
+		}*/
+		
+		public String addPayment(String CardType,String CardNumber,String CardHolderName,String CVC,String CardExpireDate,String PaymentDate,int BillID)
+		{
+			String output = "";
+			try
+			{
+				Connection con = connect();
+				if (con == null)
+				{
+					return "Error while connecting to the database for inserting.";
+				}
+				// create a prepared statement
+				String query = " insert into payment (`PaymentID`,`CardType`,`CardNumber`,`CardHolderName`,`CVC`,`CardExpireDate`,`Status`,`TaxAmount`,`TotalAmount`,`PaymentDate`,`BillID`)"
+
+	+ " values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				PreparedStatement pstmnt = con.prepareStatement(query);
+				double TaxAmount = this.calculateTaxAmount(BillID);
+				double TotalAmount = this.calculateSubAmount(BillID);
+				String Status = "pending";
+				// binding values
+				pstmnt.setString(1, CardType);
+				pstmnt.setString(2, CardNumber);
+				pstmnt.setString(3, CardHolderName);
+				pstmnt.setString(4, CVC);
+				pstmnt.setString(5, CardExpireDate);
+				pstmnt.setString(6, Status);
+				pstmnt.setDouble(7, TaxAmount);
+				pstmnt.setDouble(8, TotalAmount);
+				pstmnt.setString(9, PaymentDate);
+				pstmnt.setInt(10, BillID);
+				// execute the statement
+				pstmnt.execute();
+				con.close();
+				String newPayment = getAllPayment();
+				output = "{\"status\":\"success\", \"data\": \"" +
+						newPayment + "\"}";
+			}
+			catch (Exception e)
+			{
+				output = "{\"status\":\"error\", \"data\": \"Error while inserting the item.\"}";
 				System.err.println(e.getMessage());
 			}
 			return output;
@@ -327,7 +371,7 @@ public class Payment {
 		}
 		
 		//create update method
-		public String updatePayment(int PaymentID,String CardType,String CardNumber,String CardHolderName,String CVC,String CardExpireDate,String PaymentDate,int BillID) 
+		public String updatePayment(String PaymentID,String CardType,String CardNumber,String CardHolderName,String CVC,String CardExpireDate,String PaymentDate,int BillID) 
 		{
 			String output = "";
 			try(Connection con = connect()) {
@@ -349,10 +393,9 @@ public class Payment {
 				pstmt.setDouble(8,TotalAmount);
 				pstmt.setString(9,PaymentDate);
 				pstmt.setInt(10,BillID);
-				pstmt.setInt(11,PaymentID);
+				pstmt.setInt(11,Integer.parseInt(PaymentID));
 				pstmt.execute();
 				con.close();
-				System.out.println(PaymentID);
 		
 				String newItems = getAllPayment();
 				output = "{\"status\":\"success\", \"data\": \"" +

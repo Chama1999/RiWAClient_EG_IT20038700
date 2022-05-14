@@ -1,7 +1,5 @@
 package com;
-
 import java.io.IOException;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -61,7 +59,8 @@ public class PaymentAPI extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String output = paymentObj.addPayment(request.getParameter("CardType"),
+		String output = paymentObj.addPayment(
+				request.getParameter("CardType"),
 				request.getParameter("CardNumber"),
 				request.getParameter("CardHolderName"),
 				request.getParameter("CVC"),
@@ -78,7 +77,7 @@ public class PaymentAPI extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map paras = getParasMap(request);
 		String output = paymentObj.updatePayment(
-				Integer.parseInt(paras.get("hidItemIDSave").toString()),
+				paras.get("hidItemIDSave").toString(),
 				paras.get("CardType").toString(),
 				paras.get("CardNumber").toString(),
 				paras.get("CardHolderName").toString(),
@@ -94,6 +93,10 @@ public class PaymentAPI extends HttpServlet {
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Map paras = getParasMap(request);
+		String output = paymentObj.DeletePayment(
+				Integer.parseInt(paras.get("PaymentID").toString()));
+		response.getWriter().write(output);
 	}
 
 }

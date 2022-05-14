@@ -9,7 +9,7 @@
 <title>Items Management</title>
 <link rel="stylesheet" href="Views/bootstrap.min.css">
 <script src="Components/jquery-3.6.0.min.js"></script>
-<script src="Components/payment.js"></script>
+<script src="Components/Payment.js"></script>
 <script src="Components/auth.js"></script>
 </head>
 <body>
