@@ -17,7 +17,7 @@
 	<input id="btnLogout" name="btnLogout" type="button" value="logout" class="btn btn-primary">
 		<div class="row">
 			<div class="col-6">
-				<h1>Items Management</h1>
+				<h1>Payment Management</h1>
 				<!--  <form id="formItem" name="formItem">
 					Item code: <input id="itemCode" name="itemCode" type="text"
 						class="form-control form-control-sm"> <br> Item name:
