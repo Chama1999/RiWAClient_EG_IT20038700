@@ -6,18 +6,44 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Items Management</title>
+<title>Payment Management</title>
 <link rel="stylesheet" href="Views/bootstrap.min.css">
+<link rel="stylesheet" href="Views/payment.css">
 <script src="Components/jquery-3.6.0.min.js"></script>
 <script src="Components/Payment.js"></script>
 <script src="Components/auth.js"></script>
 </head>
 <body>
+ <section class="sub-header">
+  <nav>
+      <a href="index.html"><img src="Media/logopanademic.png"></a>
+      <div class="title">
+      <h1>ELECTROGRID</h1>
+      </div>
+      <div class="nav-links" id="navLinks">
+         <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+              <li><a href="">OVERVIEW</a></li>
+              <li><a href="">SERVICES</a></li>
+              <li><a href="">EMERGENCIES</a></li>
+              <li><a href="">CONTACT</a></li>
+              <li><input id="btnLogout" name="btnLogout" type="button" value="logout" class="btn btn-primary"></li>
+             
+          </ul>
+
+      </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+  </nav>
+     <h1>Payment Management</h1>
+
+
+
+</section>
+<br>
 	<div class="container">
-	<input id="btnLogout" name="btnLogout" type="button" value="logout" class="btn btn-primary">
+	
 		<div class="row">
 			<div class="col-6">
-				<h1>Payment Management</h1>
 				<!--  <form id="formItem" name="formItem">
 					Item code: <input id="itemCode" name="itemCode" type="text"
 						class="form-control form-control-sm"> <br> Item name:
