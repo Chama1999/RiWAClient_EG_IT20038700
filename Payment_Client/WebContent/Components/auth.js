@@ -1,8 +1,10 @@
 $(document).on("click", "#btnLogin", function(event)
 		{
 //	Clear alerts---------------------
+	
 	$("#alertError").text("");
 	$("#alertError").hide();
+	
 //	Form validation-------------------
 	var status = validateLoginForm();
 	if (status != true)

@@ -21,22 +21,43 @@
 <body>
 	
 		<div class="row">
-			<div class="col-lg-8 m-auto">
-			<div class="card">
-			<div class="card-title">
+			<div class="col-lg-5 m-auto">
+			<div class="card mt-5 bg-dark">
+			<div class="card-title text-center mt-3" >
 			     <img src="Media/clipart166560.png" width="150px" height="150px">
-				<h1>Login</h1>
+				<h1 class="h1edit">LOGIN</h1>
 				<form id="formLogin">
-					Username: <input id="txtUsername" name="txtUsername" type="text"
-						class="form-control form-control-sm"> Password: <input
-						id="txtPassword" name="txtPassword" type="password"
-						class="form-control form-control-sm"> <br> <input
-						id="btnLogin" name="btnLogin" type="button" value="Login"
+				<div class="input-group mb-3">
+				<div class="input-group-prepend">
+				<span class="input-group-text">
+				<i class="fa fa-user fa-2x"></i>
+				</span>
+				</div>
+					<input id="txtUsername" name="txtUsername" type="text" placeholder="User Name"
+						class="form-control form-control-sm"> 
+				</div>		
+				
+				<div class="input-group mb-3">
+				<div class="input-group-prepend">
+				<span class="input-group-text">
+				<i class="fa fa-lock fa-2x"></i>
+				</span>
+				</div>
+						<input id="txtPassword" name="txtPassword" type="password" placeholder="Password"
+						class="form-control form-control-sm"> 
+						
+				</div>		
+						
+						<br> 	
+						<input id="btnLogin" name="btnLogin" type="button" value="Login"
 						class="btn btn-primary"> <br> <br>
 					<div id="alertError" class="alert alert-danger"></div>
+					
+					
 				</form>
 				</div>
 			</div>
+		</div>
 		</div>
 </body>
 </html>
