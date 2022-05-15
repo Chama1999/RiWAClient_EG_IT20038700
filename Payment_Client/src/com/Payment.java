@@ -141,7 +141,7 @@ public class Payment {
 						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">TaxAmount</th>" +
 	                    "<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">TotalAmount</th>" +
 						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">PaymentDate</th>" +
-						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">BillID</th><th>Update</th><th>Remove</th></tr>";
+						"<th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">BillID</th><th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">Update</th><th style=\"padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #04AA6D; color: white;\">Remove</th></tr>";
 				String query = "select * from payment";
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
@@ -374,6 +374,12 @@ public class Payment {
 		public String updatePayment(String PaymentID,String CardType,String CardNumber,String CardHolderName,String CVC,String CardExpireDate,String PaymentDate,int BillID) 
 		{
 			String output = "";
+			String decodedmonCardType = java.net.URLDecoder.decode(CardType);
+			String decodedmonCardNumber = java.net.URLDecoder.decode(CardNumber);
+			String decodedmonCardHolderName = java.net.URLDecoder.decode(CardHolderName);
+			String decodedmonCVC = java.net.URLDecoder.decode(CVC);
+			String decodedmonCardExpireDate = java.net.URLDecoder.decode(CardExpireDate);
+			String decodedmonPaymentDate = java.net.URLDecoder.decode(PaymentDate);
 			try(Connection con = connect()) {
 				
 				//implement prepared statement
@@ -383,15 +389,15 @@ public class Payment {
 				double TaxAmount = this.calculateTaxAmount(BillID);
 				double TotalAmount = this.calculateSubAmount(BillID);
 				String Status = "pending";
-				pstmt.setString(1,CardType);
-				pstmt.setString(2,CardNumber);
-				pstmt.setString(3,CardHolderName);
-				pstmt.setString(4,CVC);
-				pstmt.setString(5,CardExpireDate);
+				pstmt.setString(1,decodedmonCardType);
+				pstmt.setString(2,decodedmonCardNumber);
+				pstmt.setString(3,decodedmonCardHolderName);
+				pstmt.setString(4,decodedmonCVC);
+				pstmt.setString(5,decodedmonCardExpireDate);
 				pstmt.setString(6,Status);
 				pstmt.setDouble(7, TaxAmount);
 				pstmt.setDouble(8,TotalAmount);
-				pstmt.setString(9,PaymentDate);
+				pstmt.setString(9,decodedmonPaymentDate);
 				pstmt.setInt(10,BillID);
 				pstmt.setInt(11,Integer.parseInt(PaymentID));
 				pstmt.execute();

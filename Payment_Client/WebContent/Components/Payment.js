@@ -50,12 +50,12 @@ $(document).on("click", ".btnUpdate", function(event)
 
 {
 $("#hidItemIDSave").val($(this).data("itemid"));
-$("#CardType").val($(this).closest("tr").find('td:eq(1)').text());
-$("#CardNumber").val($(this).closest("tr").find('td:eq(2)').text());
-$("#CardHolderName").val($(this).closest("tr").find('td:eq(3)').text());
-$("#CVC").val($(this).closest("tr").find('td:eq(4)').text());
-$("#CardExpireDate").val($(this).closest("tr").find('td:eq(5)').text());
-$("#PaymentDate").val($(this).closest("tr").find('td:eq(9)').text());
+$("#CardType").val(decodeURI(($(this).closest("tr").find('td:eq(1)').text())));
+$("#CardNumber").val(decodeURI(($(this).closest("tr").find('td:eq(2)').text())));
+$("#CardHolderName").val(decodeURI(($(this).closest("tr").find('td:eq(3)').text())));
+$("#CVC").val(decodeURI(($(this).closest("tr").find('td:eq(4)').text())));
+$("#CardExpireDate").val(decodeURI(($(this).closest("tr").find('td:eq(5)').text())));
+$("#PaymentDate").val(decodeURI(($(this).closest("tr").find('td:eq(9)').text())));
 $("#BillID").val($(this).closest("tr").find('td:eq(10)').text());
 });
 
@@ -122,6 +122,7 @@ function onItemDeleteComplete(response, status)
 if (status == "success")
 {
 var resultSet = JSON.parse(response);
+
 if (resultSet.status.trim() == "success")
 {
 $("#alertSuccess").text("Successfully deleted.");
