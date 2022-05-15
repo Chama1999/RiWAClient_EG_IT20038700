@@ -32,7 +32,7 @@ data : $("#formItem").serialize(),
 dataType : "text",
 complete : function(response, status)
 {
-onItemSaveComplete(response.responseText, status);
+	onItemSaveComplete(response.responseText, status);
 }
 });
 });
@@ -76,25 +76,13 @@ data : "PaymentID=" + $(this).data("itemid"),
 dataType : "text",
 complete : function(response, status)
 {
-onItemDeleteComplete(response.responseText, status);
+     onItemDeleteComplete(response.responseText, status);
 }
 });
 });
 
 
-
-
-
-
-
 // CLIENT-MODEL================================================================
-
-
-
-
-
-
-
 function onItemSaveComplete(response, status)
 {
 if (status == "success")
@@ -159,7 +147,44 @@ function validateItemForm()
 // CODE
 if ($("#CardType").val().trim() == "")
 {
-return "Insert User Name";
+return "Insert CardType";
+}
+
+if ($("#CardNumber").val().trim() == "")
+{
+return "Insert CardNumber";
+}
+
+if ($("#CardHolderName").val().trim() == "")
+{
+return "Insert CardHolderName";
+}
+
+if ($("#CVC").val().trim() == "")
+{
+return "Insert CVC";
+}
+
+if ($("#CardExpireDate").val().trim() == "")
+{
+return "Insert CardExpireDate";
+}
+
+if ($("#PaymentDate").val().trim() == "")
+{
+return "Insert PaymentDate";
+}
+
+if ($("#BillID").val().trim() == "")
+{
+return "Insert BillID";
+}
+
+//is numerical value
+var CVC = $("#CVC").val().trim();
+if (!$.isNumeric(CVC))
+{
+	return "Insert a numerical value for CVC.";
 }
 
 
